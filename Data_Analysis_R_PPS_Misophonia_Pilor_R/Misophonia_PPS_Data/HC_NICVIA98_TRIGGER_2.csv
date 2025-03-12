@@ -1,0 +1,89 @@
+expTime,condition, angle, approachingOrMovingAway, loomingMode, objectName, reaction time,trigger time
+15.5922,VT3,0,Approaching,LinearLooming,Vid10(Clone),0.2139124,1.5
+24.63121,T2,0,Approaching,LinearLooming,Vid00 uni(Clone),0.2775643,1
+29.13814,VT3,0,Approaching,LinearLooming,Vid10(Clone),0.2909281,1.5
+33.65131,VT4,0,Approaching,LinearLooming,Vid10(Clone),0.191513,2
+38.16015,VT1,0,Approaching,LinearLooming,Vid10(Clone),0.1875709,0.5
+42.67796,VT2,0,Approaching,LinearLooming,Vid10(Clone),0.2106058,1
+47.18214,VT2,0,Approaching,LinearLooming,Vid10(Clone),0.2516377,1
+56.20977,VT3,0,Approaching,LinearLooming,Vid10(Clone),0.2661741,1.5
+60.72503,VT3,0,Approaching,LinearLooming,Vid10(Clone),0.2112148,1.5
+65.23753,VT3,0,Approaching,LinearLooming,Vid10(Clone),0.2639682,1.5
+69.74741,VT3,0,Approaching,LinearLooming,Vid10(Clone),0.2647037,1.5
+78.77563,VT2,0,Approaching,LinearLooming,Vid10(Clone),0.2915333,1
+83.28185,VT3,0,Approaching,LinearLooming,Vid10(Clone),0.2631963,1.5
+87.81067,VT2,0,Approaching,LinearLooming,Vid10(Clone),0.2294348,1
+92.3233,VT5,0,Approaching,LinearLooming,Vid10(Clone),0.2350943,2.5
+96.83392,VT1,0,Approaching,LinearLooming,Vid10(Clone),0.3482753,0.5
+101.346,VT5,0,Approaching,LinearLooming,Vid10(Clone),0.238293,2.5
+105.8561,VT3,0,Approaching,LinearLooming,Vid10(Clone),0.3028444,1.5
+110.382,T3,0,Approaching,LinearLooming,Vid00 uni(Clone),0.2269817,1.5
+114.8991,VT4,0,Approaching,LinearLooming,Vid10(Clone),0.2516841,2
+119.4206,VT2,0,Approaching,LinearLooming,Vid10(Clone),0.2242899,1
+123.9407,VT4,0,Approaching,LinearLooming,Vid10(Clone),0.2372303,2
+128.4445,VT5,0,Approaching,LinearLooming,Vid10(Clone),0.2023133,2.5
+137.4835,VT2,0,Approaching,LinearLooming,Vid10(Clone),0.1931947,1
+141.9988,VT2,0,Approaching,LinearLooming,Vid10(Clone),0.2394139,1
+146.5175,VT5,0,Approaching,LinearLooming,Vid10(Clone),0.2136699,2.5
+151.0314,VT2,0,Approaching,LinearLooming,Vid10(Clone),0.2289987,1
+155.5371,VT4,0,Approaching,LinearLooming,Vid10(Clone),0.2383939,2
+160.0526,VT2,0,Approaching,LinearLooming,Vid10(Clone),0.3065869,1
+164.5655,T3,0,Approaching,LinearLooming,Vid00 uni(Clone),0.2240943,1.5
+169.0737,VT2,0,Approaching,LinearLooming,Vid10(Clone),0.2640451,1
+173.5883,T4,0,Approaching,LinearLooming,Vid00 uni(Clone),0.1693135,2
+178.1073,VT3,0,Approaching,LinearLooming,Vid10(Clone),0.3015782,1.5
+182.6386,VT5,0,Approaching,LinearLooming,Vid10(Clone),0.2139864,2.5
+187.1591,VT3,0,Approaching,LinearLooming,Vid10(Clone),0.2142633,1.5
+200.7134,VT2,0,Approaching,LinearLooming,Vid10(Clone),0.2671204,1
+205.2348,VT3,0,Approaching,LinearLooming,Vid10(Clone),0.2501049,1.5
+209.7362,VT3,0,Approaching,LinearLooming,Vid10(Clone),0.2366166,1.5
+214.2612,VT5,0,Approaching,LinearLooming,Vid10(Clone),0.2249715,2.5
+218.7771,VT5,0,Approaching,LinearLooming,Vid10(Clone),0.2361671,2.5
+223.2918,VT5,0,Approaching,LinearLooming,Vid10(Clone),0.2498945,2.5
+227.7981,VT3,0,Approaching,LinearLooming,Vid10(Clone),0.2501185,1.5
+232.3126,VT1,0,Approaching,LinearLooming,Vid10(Clone),0.2534362,0.5
+236.8373,VT1,0,Approaching,LinearLooming,Vid10(Clone),0.3554733,0.5
+241.3546,VT2,0,Approaching,LinearLooming,Vid10(Clone),0.2232117,1
+245.8617,VT3,0,Approaching,LinearLooming,Vid10(Clone),0.2506703,1.5
+250.3785,VT5,0,Approaching,LinearLooming,Vid10(Clone),0.2499738,2.5
+254.8883,VT4,0,Approaching,LinearLooming,Vid10(Clone),0.1976422,2
+259.3997,VT3,0,Approaching,LinearLooming,Vid10(Clone),0.1962005,1.5
+263.9156,T3,0,Approaching,LinearLooming,Vid00 uni(Clone),0.2902217,1.5
+268.443,VT4,0,Approaching,LinearLooming,Vid10(Clone),0.1989628,2
+272.9599,VT2,0,Approaching,LinearLooming,Vid10(Clone),0.2112237,1
+277.4901,VT4,0,Approaching,LinearLooming,Vid10(Clone),0.2092028,2
+282.0209,VT2,0,Approaching,LinearLooming,Vid10(Clone),0.2517544,1
+291.0417,VT5,0,Approaching,LinearLooming,Vid10(Clone),0.2249812,2.5
+295.5468,VT3,0,Approaching,LinearLooming,Vid10(Clone),0.2381539,1.5
+300.0657,T4,0,Approaching,LinearLooming,Vid00 uni(Clone),0.1870674,2
+304.5796,VT3,0,Approaching,LinearLooming,Vid10(Clone),0.307147,1.5
+309.105,VT5,0,Approaching,LinearLooming,Vid10(Clone),0.291402,2.5
+322.6592,VT2,0,Approaching,LinearLooming,Vid10(Clone),0.2692947,1
+327.1713,VT1,0,Approaching,LinearLooming,Vid10(Clone),0.2890333,0.5
+331.7083,VT2,0,Approaching,LinearLooming,Vid10(Clone),0.2150313,1
+345.2796,VT1,0,Approaching,LinearLooming,Vid10(Clone),0.2241578,0.5
+349.8096,VT5,0,Approaching,LinearLooming,Vid10(Clone),0.2365239,2.5
+354.3216,T3,0,Approaching,LinearLooming,Vid00 uni(Clone),0.3080944,1.5
+358.8358,VT5,0,Approaching,LinearLooming,Vid10(Clone),0.2484771,2.5
+363.3604,VT2,0,Approaching,LinearLooming,Vid10(Clone),0.23574,1
+367.8873,VT2,0,Approaching,LinearLooming,Vid10(Clone),0.1846906,1
+372.4011,VT2,0,Approaching,LinearLooming,Vid10(Clone),0.2244859,1
+376.9106,VT3,0,Approaching,LinearLooming,Vid10(Clone),0.2234712,1.5
+381.4366,VT4,0,Approaching,LinearLooming,Vid10(Clone),0.1992716,2
+390.4629,VT4,0,Approaching,LinearLooming,Vid10(Clone),0.2238396,2
+394.9757,VT5,0,Approaching,LinearLooming,Vid10(Clone),0.2377496,2.5
+399.4968,VT4,0,Approaching,LinearLooming,Vid10(Clone),0.2793138,2
+404.0049,VT5,0,Approaching,LinearLooming,Vid10(Clone),0.2250512,2.5
+408.509,VT3,0,Approaching,LinearLooming,Vid10(Clone),0.3416154,1.5
+413.0454,VT4,0,Approaching,LinearLooming,Vid10(Clone),0.175459,2
+417.5534,T2,0,Approaching,LinearLooming,Vid00 uni(Clone),0.3277743,1
+422.0578,VT4,0,Approaching,LinearLooming,Vid10(Clone),0.2530534,2
+431.0887,VT5,0,Approaching,LinearLooming,Vid10(Clone),0.181143,2.5
+435.5996,VT1,0,Approaching,LinearLooming,Vid10(Clone),0.3175201,0.5
+440.1089,VT1,0,Approaching,LinearLooming,Vid10(Clone),0.2669468,0.5
+444.6154,VT2,0,Approaching,LinearLooming,Vid10(Clone),0.1958396,1
+449.1294,VT2,0,Approaching,LinearLooming,Vid10(Clone),0.2360275,1
+453.6495,VT5,0,Approaching,LinearLooming,Vid10(Clone),0.2501922,2.5
+462.692,VT2,0,Approaching,LinearLooming,Vid10(Clone),0.2270884,1
+467.1975,VT3,0,Approaching,LinearLooming,Vid10(Clone),0.2103189,1.5
+471.7116,VT5,0,Approaching,LinearLooming,Vid10(Clone),0.2115195,2.5
