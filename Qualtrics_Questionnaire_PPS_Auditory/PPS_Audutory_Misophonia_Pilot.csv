@@ -1,0 +1,8 @@
+ID;Group;Screening;Age;Sex;Sensory_deficit;Hand;Upset_neutral_1;Distress_neutral_2;Valence_neutral;Arousal_neutral;Dominance_neutral;Upset_trigger_V10_1;Distress_trigger_V10_2;Valence_trigger_V10;Arousal_trigger_V10;Dominanc_trigger_V10;V05_Upset;V05_Distress;V17_Upset;V17_Distress;V16_Upset;V16_Distress
+NICVIA98;HC;;26;2;2;2;0;0;3;1;4;2;0;3;2;4;0;0;2;0;3;1
+GIUBRI97;MS;155;27;1;2;1;2;1;2;3;2;6;7;1;4;4;6;3;6;5;5;4
+FABBRI60;HC;73;64;2;2;2;0;0;3;1;3;5;5;2;4;3;0;0;0;0;0;0
+MARISAN90;HC;57;35;1;2;2;0;0;3;3;3;0;0;3;4;4;0;0;0;0;0;0
+LUIELI66;MS;146;58;1;2;2;2;1;2;3;4;7;7;2;4;4;7;7;5;5;8;8
+ANASER81;MS;163;43;1;2;2;3;3;3;4;2;2;2;3;3;3;5;4;5;5;7;7
+HELTHI96;MS;103;28;3;2;2;8;5;1;5;2;9;4;1;4;3;7;1;5;2;10;3
