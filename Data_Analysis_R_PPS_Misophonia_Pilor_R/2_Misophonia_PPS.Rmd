@@ -1,0 +1,245 @@
+---
+title: "2_Misophonia_PPS"
+author: "GiuliaBrix"
+date: "2025-02-13"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#Libraries
+```{r, message=FALSE, warning=FALSE}
+library(readr)
+library(dplyr)
+library(stringr)
+library(ggplot2)
+library(tidyverse)
+options(scipen = 999)
+```
+
+#Import final dataset
+```{r, message=FALSE, warning=FALSE}
+Final_PPS_df <- read_csv("Misophonia_PPS_data/Final_PPS_df.csv")
+names(Final_PPS_df)
+```
+
+
+#Define variables type
+```{r, message=FALSE, warning=FALSE}
+Final_PPS_df$ID <- factor(Final_PPS_df$ID)
+Final_PPS_df$Group <- factor(Final_PPS_df$Group)
+Final_PPS_df$Stimulus <- factor(Final_PPS_df$Stimulus)
+Final_PPS_df$condition <- factor(Final_PPS_df$condition)
+Final_PPS_df$trigger.time <- factor(Final_PPS_df$trigger.time)
+Final_PPS_df$reaction.time <- as.numeric(Final_PPS_df$reaction.time)
+```
+
+#Density Plot to look at the distribution + geompoint plot 
+```{r, message=FALSE, warning=FALSE}
+Final_PPS_df <- Final_PPS_df %>% 
+  filter(!is.na(reaction.time)) %>%  # Remove rows with NA in reaction.time
+  filter(trigger.time != "0")       # Remove rows where trigger.time equals 0
+
+ggplot(Final_PPS_df, aes(x = trigger.time, y = reaction.time, color = Group)) +
+  geom_point(alpha = 0.7, size = 2) +  
+  facet_grid(Group ~ Stimulus) +       
+  theme_bw()
+```
+
+# Reaction times Descriptives
+```{r, message=FALSE, warning=FALSE}
+#Description of condition == VT1, VT2, VT3, VT4, VT5 reaction.time by Group, Stimulus and trigger.time
+Final_PPS_df %>%
+  filter(str_starts(condition, "VT")) %>%  # Filter rows where condition starts with "VT"
+  group_by(Group, Stimulus, trigger.time) %>%  # Group by Group, Stimulus, and trigger.time
+  summarise(
+    mean_reaction_time = mean(reaction.time, na.rm = TRUE),
+    sd_reaction_time = sd(reaction.time, na.rm = TRUE),
+    n = n()
+  ) %>%
+  arrange(Group, Stimulus, trigger.time)  # Arrange by Group, Stimulus, and trigger.time
+```
+
+
+#Corrected RTs
+##1. Calculate the mean reaction time (Unimodal_mean) for each participant (ID) for unimodal trials (T) - this represents the time they usually need to react to a tactile stimulus
+```{r, message=FALSE, warning=FALSE}
+
+Final <- Final_PPS_df
+
+unimodal_mean <- Final %>%
+  filter(str_starts(condition, "T")) %>%  # Filter rows where condition starts with "T"
+  group_by(ID) %>%  # Group by ID and trigger.time
+  summarise(Unimodal_mean = mean(reaction.time, na.rm = TRUE), .groups = "drop")  # Calculate mean
+
+```
+
+
+##2.Corrected reaction times
+Subtract to each reaction.time in bimodal trials (VT1, VT2, VT3, VT4, VT5) the Unimodal_mean for each participant.
+
+```{r, message=FALSE, warning=FALSE}}
+Final_b <- Final %>%
+  left_join(unimodal_mean, by = c("ID")) %>%  
+  mutate(diff_reaction_time = reaction.time - Unimodal_mean)  
+
+
+ggplot(Final_b, aes(x = trigger.time, y = diff_reaction_time, color = Group)) +
+  geom_point(alpha = 0.7, size = 2) +  
+  facet_grid(Group ~ Stimulus) +       
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed", size = 0.5) +
+  theme_bw()
+
+#Export Final_b
+#write_csv(Final_b, "Misophonia_PPS_data/Final_b.csv")
+```
+
+##3. Corrected RTs descriptives 
+```{r, message=FALSE, warning=FALSE}
+#Description of condition == VT1, VT2, VT3, VT4, VT5 diff_reaction_time by Group, Stimulus and trigger.time
+Final_b %>%
+  filter(str_starts(condition, "VT")) %>%  # Filter rows where condition starts with "VT"
+  group_by(Group, Stimulus, trigger.time) %>%  # Group by Group, Stimulus, and trigger.time
+  summarise(
+    mean_diff_reaction_time = mean(diff_reaction_time, na.rm = TRUE),
+    sd_diff_reaction_time = sd(diff_reaction_time, na.rm = TRUE),
+    n = n()
+  ) %>%
+  arrange(Group, Stimulus, trigger.time)  # Arrange by Group, Stimulus, and trigger.time
+
+```
+
+##Linear fitting
+```{r, message=FALSE, warning=FALSE}
+# Calculate mean difference in reaction time for each participant based on group, stimulus, and condition
+RT2 <- Final_b %>%
+  group_by(ID, Group, Stimulus, condition) %>%
+  summarise(diff_reaction_time = mean(diff_reaction_time))
+
+# Create wide format for analysis
+RT2_wide <- RT2 %>%
+  spread(condition, diff_reaction_time)
+
+# Create empty columns for linear fit parameters
+RT2_wide$slope <- NA
+RT2_wide$intercept <- NA
+RT2_wide$r_squared <- NA
+
+# Perform linear fits for each participant
+for (s in 1:nrow(RT2_wide)) {
+  x = c(0.5, 1, 1.5, 2, 2.5)  # trigger times for VT1-VT5
+  y = as.numeric(unlist(RT2_wide[s, c("VT1", "VT2", "VT3", "VT4", "VT5")]))
+  
+  # Fit linear model
+  f <- lm(y ~ x)
+  
+  # Store parameters
+  RT2_wide$slope[s] <- coef(f)[2]  # k in your equation
+  RT2_wide$intercept[s] <- coef(f)[1]  # y0 in your equation
+  RT2_wide$r_squared[s] <- summary(f)$r.squared
+}
+
+# Analyze slopes by group
+group_summary <- RT2_wide %>%
+  group_by(Group, Stimulus) %>%
+  summarise(
+    mean_slope = mean(slope, na.rm = TRUE),
+    sd_slope = sd(slope, na.rm = TRUE),
+    mean_intercept = mean(intercept, na.rm = TRUE),
+    sd_intercept = sd(intercept, na.rm = TRUE),
+    mean_r_squared = mean(r_squared, na.rm = TRUE)
+  )
+
+#Export group_summary
+#write_csv(group_summary, "Misophonia_PPS_data/group_summary.csv")
+
+ggplot(group_summary, aes(x = Stimulus, y = mean_slope, group = Group, color = Group)) +
+  geom_point(size = 3, position = position_dodge(width = 0.2)) +  # Points for mean slopes
+  geom_line(position = position_dodge(width = 0.2)) +           # Lines connecting points within groups
+  geom_errorbar(
+    aes(ymin = mean_slope - sd_slope, ymax = mean_slope + sd_slope), 
+    width = 0.2, 
+    position = position_dodge(width = 0.2)
+  ) +
+  theme_bw() +
+  labs(
+    title = "Mean Slopes by Stimulus and Group",
+    x = "Stimulus",
+    y = "Mean Slope (k)",
+    color = "Group"
+  ) +
+  theme(
+    legend.position = "top",
+    panel.grid = element_blank(),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  )
+
+```
+
+```{r, message=FALSE, warning=FALSE}
+group_fits <- RT2_wide %>%
+  group_by(Group, Stimulus) %>%
+  summarise(
+    mean_slope = mean(slope, na.rm = TRUE),
+    mean_intercept = mean(intercept, na.rm = TRUE)
+  )
+
+fit_lines <- group_fits %>%
+  mutate(fit_line = purrr::map2(mean_slope, mean_intercept, ~ tibble(
+    trigger_time = seq(0.5, 2.5, length.out = 100),
+    reaction_time = .x * seq(0.5, 2.5, length.out = 100) + .y
+  ))) %>%
+  unnest(fit_line)
+
+ggplot(fit_lines, aes(x = trigger_time, y = reaction_time, color = Stimulus)) +
+  geom_line(size = 1.2) +  
+  facet_wrap(~ Group) +  
+  theme_bw() +
+  labs(
+    title = "Linear Fit",
+    x = "Trigger Time",
+    y = "Reaction Time",
+    color = "Group"
+  ) +
+  theme(
+    legend.position = "top",
+    panel.grid = element_blank(),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  )
+
+```
+
+```{r, message=FALSE, warning=FALSE}
+ggplot(fit_lines, aes(x = trigger_time, y = reaction_time, 
+                       color = Group, linetype = Stimulus)) +
+  geom_line(size = 1) +
+  scale_color_manual(values = c("MS" = "red", "HC" = "blue"),
+                     labels = c("MS" = "Misophonia", "HC" = "Control")) +
+  scale_linetype_manual(values = c("NEUTRAL" = "dotted", "TRIGGER" = "solid")) +
+  theme_bw() +
+  labs(
+    title = "",
+    x = "Sound distance / Time point of approaching sound",
+    y = "Corrected RTs",
+    color = "Group",
+    linetype = "Stimulus"
+  ) +
+  theme(
+    legend.position = "right",
+    panel.grid = element_blank(),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  )
+
+
+
+```
+
+
+
+
+
+
+
+
